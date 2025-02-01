@@ -6,7 +6,7 @@ import Portfolio from "./componants/Portfolio";
 import Certificates from "./componants/Certificates";
 import Contact from "./componants/Contact";
 import Footer from "./componants/Footer";
-import Techstack from "./componants/TechStack";
+import Techstack from "./componants/Techstack";
 
 
 const App = () => {

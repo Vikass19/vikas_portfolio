@@ -1,5 +1,5 @@
 import React from "react";
-import resume from "../assets/developer(vikas).pdf";
+import resume from "../assets/Resume_vikas.pdf";
 import mypic from "../assets/profile.png";
 
 const Hero = () => {
@@ -22,7 +22,7 @@ const Hero = () => {
           </p>
           <div className="mt-8 flex justify-center lg:justify-start gap-4">
             <a
-              href="https://www.fiverr.com/vikass0129"
+              href="https://www.upwork.com/freelancers/~0171c89cbf657e3644?mp_source=share" target="_blank"
               className="bg-teal-500 hover:bg-teal-600 text-white py-2 px-6 rounded-lg shadow-lg transition"
             >
               Hire Me
