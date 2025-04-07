@@ -53,11 +53,9 @@ const About = () => {
             <p>
               <span className="font-semibold text-teal-400">Email:</span> vikasbansode804@gmail.com
             </p>
+            
             <p>
-              <span className="font-semibold text-teal-400">Phone:</span> 8767566254
-            </p>
-            <p>
-              <span className="font-semibold text-teal-400">YouTube Channel:</span> @fixerror29
+              <span className="font-semibold text-teal-400">YouTube Channel:</span> @CodeDevApi
             </p>
           </div>
 
