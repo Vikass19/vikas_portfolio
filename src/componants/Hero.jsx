@@ -68,7 +68,7 @@ const Hero = () => {
               <i className="fab fa-instagram"></i>
             </a>
             <a
-              href="https://youtube.com/@fixerror29?si=cw5H9ebbJ2iPYOe7"
+              href="https://www.youtube.com/@CodeDevApi"
               className="text-teal-400 text-3xl hover:text-teal-500 transition-transform transform hover:scale-125"
             >
               <i className="fab fa-youtube"></i>
