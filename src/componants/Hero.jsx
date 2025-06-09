@@ -1,5 +1,5 @@
 import React from "react";
-import resume from "../assets/vikasResume_v2.pdf";
+import resume from "../assets/vikas_resumev5.pdf";
 import mypic from "../assets/profile.png";
 
 const Hero = () => {
