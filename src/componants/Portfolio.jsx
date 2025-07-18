@@ -37,7 +37,7 @@ const Portfolio = () => {
                 A blog platform with rich features like user authentication, Markdown support, and complete CRUD operations.
               </p>
               <a
-                href="https://github.com/Vikass19/blog-website"
+                href="https://blog-website-codebyvikas.vercel.app/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center space-x-2 px-5 py-3 bg-gold text-black rounded-full font-medium hover:bg-yellow transition"
