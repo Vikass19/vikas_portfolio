@@ -1,25 +1,24 @@
 import React from "react";
-import Header from "./componants/Header";
-import Hero from "./componants/Hero";
-import About from "./componants/About";
-import Portfolio from "./componants/Portfolio";
-import Certificates from "./componants/Certificates";
-import Contact from "./componants/Contact";
-import Footer from "./componants/Footer";
-import Techstack from "./componants/Techstack";
+import Home from "./pages/Home";
+import AOS from 'aos';
+import 'aos/dist/aos.css';
+import { useEffect } from "react";
 
 
 const App = () => {
+  useEffect(() => {
+    AOS.init({
+      duration: 1000,
+      once: false, // ✅ add here to trigger animations every time on scroll
+    });
+  }, []);
+
   return (
     <div>
-  <Header />
-  <Hero />
-  <About />
- <Techstack />
-  <Certificates />
-  <Portfolio />
-  <Contact />
- <Footer />
+    <Home />
+
+
+
 
     </div>
   );

@@ -1,5 +1,3 @@
-import React from "react";
-
 const Techstack = () => {
   const techStackItems = [
     { name: "Python", iconClass: "fa-brands fa-python" },
@@ -13,13 +11,13 @@ const Techstack = () => {
   ];
 
   return (
-    <section className="bg-gray-900 text-white py-16 px-6" id="tech-stack">
+    <section className="bg-black rounded-lg text-gold py-16 px-6" id="tech-stack">
       {/* Section Heading */}
       <div className="text-center mb-10">
         <h2 className="text-4xl font-bold">
-          My <span className="text-teal-400">Tech Stack</span>
+          My <span className="text-yellow">Tech Stack</span>
         </h2>
-        <p className="text-gray-300 mt-4">Technologies I work with</p>
+        <p className="text-graytext mt-4">Technologies I work with</p>
       </div>
 
       {/* Tech Stack Grid */}
@@ -27,10 +25,12 @@ const Techstack = () => {
         {techStackItems.map((item, index) => (
           <div
             key={index}
-            className="tech-card bg-gray-800 p-6 rounded-lg shadow-lg transform hover:scale-105 transition duration-300"
+            className="tech-card bg-black border-2 border-gold p-6 rounded-lg shadow-lg transform hover:scale-105 transition duration-500"
           >
             <i
-              className={`${item.iconClass} text-4xl text-teal-400 mx-auto mb-4`}
+              className={`${item.iconClass} text-4xl text-yellow mx-auto mb-4 ${
+                index % 3 === 0 ? "animate-spin-slow" : ""
+              }`}
             ></i>
             <h3 className="text-xl font-semibold text-center">{item.name}</h3>
           </div>
@@ -40,4 +40,4 @@ const Techstack = () => {
   );
 };
 
-export default Techstack
+export default Techstack;
