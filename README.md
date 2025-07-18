@@ -1,17 +1,27 @@
-# Portfolio
+# 🖥️ Vikas Bansode | Portfolio Website
 
-This is a portfolio website built using React.
+Welcome to my personal portfolio website built with **React.js and Tailwind CSS** showcasing my skills, projects, and certificates.
 
-## Features:
-- Showcases projects, skills, and certificates.
-- Built with React and styled using Tailwind CSS.
-- Responsive design for mobile and desktop.
+##  Features
 
-## React + Vite
+- Responsive modern UI design
+- Smooth animations and transitions
+- Sections:
+  - Hero
+  - About
+  - Tech Stack
+  - Certificates
+  - Portfolio
+  - Contact
+- Dark and light mode toggle
+- Mobile-friendly sidebar navigation
 
-This template provides a minimal setup to get React working in Vite with Hot Module Replacement (HMR) and some ESLint rules.
+## 🔧 Tech Stack
 
-### Plugins:
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh.
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh.
-# vikas_portfolio
+- React.js
+- Tailwind CSS
+- Font Awesome Icons
+- AOS (Animate On Scroll)
+
+##  Project Structure
+
