@@ -11,7 +11,7 @@ import SideNavbar from "../componants/SideNavbar";
 
 const Home = () => {
   return (
-    <div className="relative flex flex-col min-h-screen text-white bg-gradient-to-br from-[#0f0f0f] via-[#1a1a1a] to-[#111827]">
+<div className="relative flex flex-col min-h-screen text-white bg-gradient-to-br from-[#0f0f0f] via-[#1a1a1a] to-[#111827] overflow-x-hidden">
       {/* Subtle background pattern */}
       <div
         className="absolute inset-0 opacity-10 z-0"
