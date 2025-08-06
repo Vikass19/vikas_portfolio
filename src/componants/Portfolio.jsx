@@ -1,20 +1,46 @@
-import blog_video from "../assets/blog_project_demo.mp4";
-import recipe_video from "../assets/Recipe_project.mp4";
+import React, { useState, useEffect } from "react";
+import "@fortawesome/fontawesome-free/css/all.min.css";
+
+
+// Import your images
+import blog1 from "../assets/homepage.png";
+import blog2 from "../assets/blogdetail.png";
+import blog3 from "../assets/searchResult.png";
+import recipe1 from "../assets/recipeview.png";
+import recipe2 from "../assets/recipepage.png";
+import recipe3 from "../assets/loginpage.png";
+import clg_1 from "../assets/clg_management/page1.png";
+import clg_2 from "../assets/clg_management/page2.png";
+import clg_3 from "../assets/clg_management/page3.png";
+import clg_4 from "../assets/clg_management/page4.png";
+import clg_5 from "../assets/clg_management/page5.png";
+
 
 const Portfolio = () => {
   const projects = [
     {
       title: "Blog Project",
-      video: blog_video,
-      desc: "A blog platform with user auth, Markdown support, and full CRUD features.",
-      link: "https://blog-website-codebyvikas.vercel.app/",
+      images: [blog1, blog2, blog3],
+      desc: "A blog platform with user authentication, Markdown support, and full CRUD capabilities.",
+      github: "https://github.com/Vikass19/blog-website",
+      live: "https://blog-website-codebyvikas.vercel.app/",
     },
     {
       title: "Recipe Project",
-      video: recipe_video,
-      desc: "Explore 12,000+ recipes with smart search and recipe management.",
-      link: "https://github.com/Vikass19/recipe-project",
+      images: [recipe1, recipe2, recipe3],
+      desc: "Explore 12,000+ recipes with smart search and complete recipe management system.",
+      github: "https://github.com/Vikass19/Recipe_Sharing_System",
+      live: "https://recipe-website-codebyvikas.vercel.app/",
     },
+
+    {
+  title: "College Management System",
+  images: [clg_1, clg_2, clg_3, clg_4, clg_5],
+  desc: "A full-featured College Management System that simplifies student, faculty, and course management. It includes role-based logins, attendance tracking, marks entry, and notice board functionality. Designed for efficiency and easy access to academic data.",
+  github: "here_is_the_link_of_collegement_system_repo_link",
+  live: "project_link",
+}
+
   ];
 
   return (
@@ -32,45 +58,10 @@ const Portfolio = () => {
         </p>
       </div>
 
-      {/* Portfolio Grid */}
+      {/* Portfolio Cards */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-12 max-w-6xl mx-auto">
         {projects.map((project, index) => (
-          <div
-            key={index}
-            className="relative group rounded-3xl overflow-hidden border border-gold/30 bg-black shadow-xl hover:shadow-yellow-500/20 transition-transform duration-500 hover:scale-[1.03]"
-            data-aos="zoom-in-up"
-            data-aos-delay={`${index * 150}`}
-          >
-            {/* Video Preview */}
-            <div className="overflow-hidden">
-              <video
-                src={project.video}
-                autoPlay
-                muted
-                loop
-                className="w-full h-64 object-cover group-hover:brightness-75 group-hover:scale-105 transition-all duration-700 rounded-t-3xl"
-              />
-            </div>
-
-            {/* Hover Overlay */}
-            <div className="absolute inset-0 bg-black/60 backdrop-blur-sm opacity-0 group-hover:opacity-100 transition duration-700 flex flex-col justify-end p-6 space-y-4">
-              <h3 className="text-3xl font-semibold text-yellow">
-                {project.title}
-              </h3>
-              <p className="text-graytext text-sm leading-relaxed">
-                {project.desc}
-              </p>
-              <a
-                href={project.link}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center space-x-2 bg-gold text-black px-6 py-2 rounded-full font-semibold hover:bg-yellow transition"
-              >
-                <i className="fa-brands fa-github"></i>
-                <span>View Code</span>
-              </a>
-            </div>
-          </div>
+          <ProjectCard key={index} project={project} delay={index * 150} />
         ))}
       </div>
 
@@ -87,6 +78,65 @@ const Portfolio = () => {
         </a>
       </div>
     </section>
+  );
+};
+
+// Project Card with Carousel
+const ProjectCard = ({ project, delay }) => {
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+  useEffect(() => {
+    const slide = setInterval(() => {
+      setCurrentIndex((prevIndex) => (prevIndex + 1) % project.images.length);
+    }, 2000);
+    return () => clearInterval(slide);
+  }, [project.images.length]);
+
+  return (
+    <div
+      className="relative group rounded-3xl overflow-hidden border border-gold/30 bg-black shadow-xl hover:shadow-yellow-500/20 transition-transform duration-500 hover:scale-[1.03]"
+      data-aos="zoom-in-up"
+      data-aos-delay={delay}
+    >
+      {/* Image Carousel */}
+      <div className="overflow-hidden">
+        <img
+          src={project.images[currentIndex]}
+          alt={project.title}
+          className="w-full h-64 object-cover transition-all duration-700 rounded-t-3xl"
+        />
+      </div>
+
+      {/* Card Content */}
+      <div className="p-6 space-y-4">
+        <h3 className="text-3xl font-semibold text-yellow">
+          {project.title}
+        </h3>
+        <p className="text-graytext text-sm leading-relaxed">
+          {project.desc}
+        </p>
+        <div className="flex flex-wrap gap-4">
+          <a
+            href={project.github}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center space-x-2 bg-gold text-black px-6 py-2 rounded-full font-semibold hover:bg-yellow transition"
+          >
+            <i className="fa-brands fa-github"></i>
+            <span>GitHub</span>
+          </a>
+          <a
+            href={project.live}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center space-x-2 border border-gold px-6 py-2 rounded-full font-semibold hover:bg-gold hover:text-black transition"
+          >
+            <i className="fa-solid fa-arrow-up-right-from-square"></i>
+            <span>Live Demo</span>
+          </a>
+        </div>
+      </div>
+    </div>
   );
 };
 
