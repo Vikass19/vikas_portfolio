@@ -14,6 +14,9 @@ import clg_2 from "../assets/clg_management/page2.png";
 import clg_3 from "../assets/clg_management/page3.png";
 import clg_4 from "../assets/clg_management/page4.png";
 import clg_5 from "../assets/clg_management/page5.png";
+import homepage from "../assets/gitProfile/homepage.png";
+import loading from "../assets/gitProfile/loading.png";
+import data from "../assets/gitProfile/data.png";
 
 
 const Portfolio = () => {
@@ -39,7 +42,16 @@ const Portfolio = () => {
   desc: "A full-featured College Management System that simplifies student, faculty, and course management. It includes role-based logins, attendance tracking, marks entry, and notice board functionality. Designed for efficiency and easy access to academic data.",
   github: "here_is_the_link_of_collegement_system_repo_link",
   live: "project_link",
+},
+
+ {
+  title: "GitHub Profile Finder",
+  images: [homepage, loading, data], // replace with your screenshots
+  desc: "A modern web app built with React, Vite, Tailwind CSS, and the GitHub API that allows users to search GitHub profiles and explore top repositories. It features a sleek UI/UX with smooth gradients, animations, and responsive design for a premium experience.",
+  github: "https://github.com/Vikass19/git-profile-finder",
+  live: "https://git-profile-finder-seven.vercel.app/",
 }
+
 
   ];
 
