@@ -61,20 +61,18 @@ const Home = () => {
     }
   }, []);
 
-  const componentsArray = [Hero, About, Techstack, Certificates, Portfolio, Contact];
+  const componentsArray = [
+    
+    Hero,
+    Portfolio,
+    About,
+    Techstack,
+    Certificates,
+    Contact,
+  ];
 
   return (
     <div className="relative flex flex-col min-h-screen text-white bg-gradient-to-br from-[#0f0f0f] via-[#1a1a1a] to-[#111827] overflow-x-hidden overflow-y-auto">
-      {/* Subtle background pattern */}
-      <div
-        className="absolute inset-0 opacity-10 z-0"
-        style={{
-          backgroundImage:
-            "url('https://www.transparenttextures.com/patterns/stardust.png')",
-          backgroundRepeat: "repeat",
-        }}
-      ></div>
-
       {/* Dark overlay */}
       <div className="absolute inset-0 bg-black bg-opacity-60 z-0"></div>
 
@@ -91,20 +89,28 @@ const Home = () => {
           </div>
 
           {/* Main Content */}
-          <main className="flex-1 mt-16 md:mt-0 md:ml-48 lg:ml-60 px-2 sm:px-4 md:px-8 lg:px-16 py-6 space-y-16 sm:space-y-20 md:space-y-24">
+          <main className="flex-1 mt-16 md:mt-0 md:ml-48 lg:ml-60 px-2 sm:px-4 md:px-8 lg:px-16 py-6 space-y-20">
             {componentsArray.map((Component, i) => (
-              <SectionWrapper
-                key={i}
-                ref={(el) => {
-                  if (el) {
-                    sectionsRef.current[i] = el;
-                    if (i < 2) syncedRefs.current[i] = el;
-                  }
-                }}
-              >
-                <Component />
-              </SectionWrapper>
+              <React.Fragment key={i}>
+                <SectionWrapper
+                  ref={(el) => {
+                    if (el) {
+                      sectionsRef.current[i] = el;
+                      if (i < 2) syncedRefs.current[i] = el;
+                    }
+                  }}
+                >
+                  <Component />
+                </SectionWrapper>
+
+                {/* Improved HR divider */}
+                {i !== componentsArray.length - 1 && (
+                  <hr className="border-gray-700 mb-6 rounded-full" />
+                )}
+              </React.Fragment>
             ))}
+
+            {/* Final Footer without HR */}
             <Footer />
           </main>
         </div>
@@ -113,11 +119,11 @@ const Home = () => {
   );
 };
 
-// Forward ref for animation
+// Forward ref for animation (no black background now)
 const SectionWrapper = React.forwardRef(({ children }, ref) => (
   <section
     ref={ref}
-    className="rounded-xl shadow-lg p-4 sm:p-6 bg-black/30 backdrop-blur-sm hover:scale-[1.01] transition-transform duration-300 overflow-hidden"
+    className="p-4 sm:p-6 hover:scale-[1.01] transition-transform duration-300"
   >
     {children}
   </section>

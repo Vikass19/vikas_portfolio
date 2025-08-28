@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "@fortawesome/fontawesome-free/css/all.min.css";
 
-
 // Import your images
 import blog1 from "../assets/homepage.png";
 import blog2 from "../assets/blogdetail.png";
@@ -17,7 +16,6 @@ import clg_5 from "../assets/clg_management/page5.png";
 import homepage from "../assets/gitProfile/homepage.png";
 import loading from "../assets/gitProfile/loading.png";
 import data from "../assets/gitProfile/data.png";
-
 
 const Portfolio = () => {
   const projects = [
@@ -35,30 +33,26 @@ const Portfolio = () => {
       github: "https://github.com/Vikass19/Recipe_Sharing_System",
       live: "https://recipe-website-codebyvikas.vercel.app/",
     },
-
     {
-  title: "College Management System",
-  images: [clg_1, clg_2, clg_3, clg_4, clg_5],
-  desc: "A full-featured College Management System that simplifies student, faculty, and course management. It includes role-based logins, attendance tracking, marks entry, and notice board functionality. Designed for efficiency and easy access to academic data.",
-  github: "here_is_the_link_of_collegement_system_repo_link",
-  live: "project_link",
-},
-
- {
-  title: "GitHub Profile Finder",
-  images: [homepage, loading, data], // replace with your screenshots
-  desc: "A modern web app built with React, Vite, Tailwind CSS, and the GitHub API that allows users to search GitHub profiles and explore top repositories. It features a sleek UI/UX with smooth gradients, animations, and responsive design for a premium experience.",
-  github: "https://github.com/Vikass19/git-profile-finder",
-  live: "https://git-profile-finder-seven.vercel.app/",
-}
-
-
+      title: "College Management System",
+      images: [clg_1, clg_2, clg_3, clg_4, clg_5],
+      desc: "A full-featured College Management System with role-based logins, attendance tracking, marks entry, and notice board functionality.",
+      github: "https://github.com/Vikass19/college-management",
+      live: "#",
+    },
+    {
+      title: "GitHub Profile Finder",
+      images: [homepage, loading, data],
+      desc: "A React + Tailwind web app using the GitHub API that lets users search profiles and explore repositories with a modern UI.",
+      github: "https://github.com/Vikass19/git-profile-finder",
+      live: "https://git-profile-finder-seven.vercel.app/",
+    },
   ];
 
   return (
     <section
-      className="bg-gradient-to-br from-black to-gray-900 text-gold py-20 px-6 rounded-2xl"
       id="portfolio"
+      className="bg-gradient-to-br from-black via-[#0f0f0f] to-gray-900 text-gold py-20 px-6 rounded-2xl"
     >
       {/* Section Header */}
       <div className="text-center mb-16" data-aos="fade-down">
@@ -66,20 +60,21 @@ const Portfolio = () => {
           My <span className="text-yellow">Portfolio</span>
         </h2>
         <p className="text-gray-400 mt-4 max-w-2xl mx-auto text-lg">
-          Crafted with clean code, creative design, and modern stack — here’s what I’ve built.
+          Crafted with clean code, creative design, and modern stack — here’s
+          what I’ve built.
         </p>
       </div>
 
-      {/* Portfolio Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-12 max-w-6xl mx-auto">
-        {projects.map((project, index) => (
-          <ProjectCard key={index} project={project} delay={index * 150} />
+      {/* Projects */}
+      <div className="flex flex-col space-y-20 max-w-6xl mx-auto">
+        {projects.map((project, i) => (
+          <ProjectRow key={i} project={project} reverse={i % 2 === 1} />
         ))}
       </div>
 
-      {/* Section Footer */}
+      {/* Footer CTA */}
       <div className="mt-20 text-center" data-aos="fade-up">
-        <p className="text-graytext text-lg mb-6">
+        <p className="text-gray-400 text-lg mb-6">
           Inspired to build something together? Let’s connect.
         </p>
         <a
@@ -93,41 +88,77 @@ const Portfolio = () => {
   );
 };
 
-// Project Card with Carousel
-const ProjectCard = ({ project, delay }) => {
-  const [currentIndex, setCurrentIndex] = useState(0);
+// Each Project Row
+const ProjectRow = ({ project, reverse }) => {
+  const [current, setCurrent] = useState(0);
 
   useEffect(() => {
     const slide = setInterval(() => {
-      setCurrentIndex((prevIndex) => (prevIndex + 1) % project.images.length);
-    }, 2000);
+      setCurrent((prev) => (prev + 1) % project.images.length);
+    }, 3000);
     return () => clearInterval(slide);
   }, [project.images.length]);
 
+  const nextSlide = () => {
+    setCurrent((prev) => (prev + 1) % project.images.length);
+  };
+
+  const prevSlide = () => {
+    setCurrent((prev) =>
+      prev === 0 ? project.images.length - 1 : prev - 1
+    );
+  };
+
   return (
     <div
-      className="relative group rounded-3xl overflow-hidden border border-gold/30 bg-black shadow-xl hover:shadow-yellow-500/20 transition-transform duration-500 hover:scale-[1.03]"
-      data-aos="zoom-in-up"
-      data-aos-delay={delay}
+      className={`flex flex-col md:flex-row items-center gap-10 ${
+        reverse ? "md:flex-row-reverse" : ""
+      }`}
+      data-aos="fade-up"
     >
-      {/* Image Carousel */}
-      <div className="overflow-hidden">
+      {/* Left - Image Carousel */}
+      <div className="md:w-1/2 relative rounded-2xl overflow-hidden shadow-lg border border-gold/20 group">
         <img
-          src={project.images[currentIndex]}
+          src={project.images[current]}
           alt={project.title}
-          className="w-full h-64 object-cover transition-all duration-700 rounded-t-3xl"
+          className="w-full h-72 object-cover transition-all duration-700"
         />
+
+        {/* Navigation Buttons */}
+        <button
+          onClick={prevSlide}
+          className="absolute top-1/2 left-3 -translate-y-1/2 bg-black/50 text-white p-2 rounded-full opacity-0 group-hover:opacity-100 transition"
+        >
+          <i className="fa-solid fa-chevron-left"></i>
+        </button>
+        <button
+          onClick={nextSlide}
+          className="absolute top-1/2 right-3 -translate-y-1/2 bg-black/50 text-white p-2 rounded-full opacity-0 group-hover:opacity-100 transition"
+        >
+          <i className="fa-solid fa-chevron-right"></i>
+        </button>
+
+        {/* Dots Indicators */}
+        <div className="absolute bottom-3 left-1/2 -translate-x-1/2 flex gap-2">
+          {project.images.map((_, i) => (
+            <button
+              key={i}
+              onClick={() => setCurrent(i)}
+              className={`w-3 h-3 rounded-full ${
+                i === current ? "bg-gold" : "bg-gray-500"
+              }`}
+            ></button>
+          ))}
+        </div>
       </div>
 
-      {/* Card Content */}
-      <div className="p-6 space-y-4">
-        <h3 className="text-3xl font-semibold text-yellow">
-          {project.title}
-        </h3>
-        <p className="text-graytext text-sm leading-relaxed">
+      {/* Right - Content */}
+      <div className="md:w-1/2 space-y-4">
+        <h3 className="text-3xl font-bold text-yellow">{project.title}</h3>
+        <p className="text-gray-300 text-base leading-relaxed">
           {project.desc}
         </p>
-        <div className="flex flex-wrap gap-4">
+        <div className="flex gap-4 pt-4">
           <a
             href={project.github}
             target="_blank"

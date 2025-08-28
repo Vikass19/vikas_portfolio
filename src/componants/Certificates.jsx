@@ -1,94 +1,149 @@
-import { useEffect } from "react";
+import { useEffect, useState, useRef } from "react";
 import AOS from "aos";
 import "aos/dist/aos.css";
 
-import sql_certificate from "../assets/sql.jpg";
-import python_certi from "../assets/python.jpg";
-import sql_intermediate from "../assets/sql(intermediate).png";
-import js_certifi from "../assets/js_certifi.png";
+import sql_certificate from "../assets/certificates/sql.jpg";
+import python_certi from "../assets/certificates/python.jpg";
+import sql_intermediate from "../assets/certificates/sql_intermediate.png"; // renamed file
+import js_certifi from "../assets/certificates/js_certifi.png";
 
 const Certificates = () => {
+  const [current, setCurrent] = useState(0);
+  const intervalRef = useRef(null);
+
   useEffect(() => {
     AOS.init({ duration: 1000, once: true });
-  }, []);
+    startAutoSlide();
+    return () => stopAutoSlide();
+  }, [current]);
 
   const certificates = [
     {
       image: python_certi,
       alt: "Python Certificate",
       title: "Python Programming",
-      desc: "Earned the Python (Basic) Certificate from HackerRank.",
       link: "https://www.hackerrank.com/certificates/869710f4b9b2",
     },
     {
       image: sql_certificate,
       alt: "SQL Certificate",
       title: "SQL Basic",
-      desc: "Earned the SQL (Basic) Certificate from HackerRank.",
       link: "https://www.hackerrank.com/certificates/869710f4b9b2",
     },
     {
       image: sql_intermediate,
       alt: "SQL Intermediate Certificate",
       title: "SQL Intermediate",
-      desc: "Earned the SQL (Intermediate) Certificate from HackerRank.",
       link: "https://www.hackerrank.com/certificates/fadde89fee35",
     },
     {
       image: js_certifi,
       alt: "JavaScript Certificate",
       title: "JavaScript",
-      desc: "Earned the JavaScript Certificate from HackerRank.",
       link: "https://www.hackerrank.com/certificates/86dff0216f7e",
     },
   ];
 
+  const nextSlide = () => {
+    setCurrent((prev) => (prev + 1) % certificates.length);
+  };
+
+  const prevSlide = () => {
+    setCurrent((prev) =>
+      prev === 0 ? certificates.length - 1 : prev - 1
+    );
+  };
+
+  const startAutoSlide = () => {
+    stopAutoSlide();
+    intervalRef.current = setInterval(nextSlide, 4000);
+  };
+
+  const stopAutoSlide = () => {
+    if (intervalRef.current) clearInterval(intervalRef.current);
+  };
+
   return (
     <section
-      className="bg-gradient-to-br from-black via-gray-900 to-gray-800 py-20 px-6 rounded-3xl text-gold"
+      className="relative bg-gradient-to-br from-black via-gray-900 to-gray-800 py-20 px-6"
       id="certificates"
     >
       {/* Header */}
-      <div className="text-center mb-16" data-aos="fade-down">
-        <h2 className="text-5xl font-extrabold tracking-wide">
+      <div className="text-center mb-12" data-aos="fade-down">
+        <h2 className="text-5xl font-extrabold tracking-wide text-gold drop-shadow-[0_0_15px_rgba(255,215,0,0.6)]">
           My <span className="text-yellow">Certificates</span>
         </h2>
         <p className="mt-4 text-gray-400 max-w-2xl mx-auto text-lg leading-relaxed">
-          Showcasing some of the verified credentials I've earned during my journey as a developer and problem solver.
+          Verified credentials I've earned along my journey as a developer 
         </p>
       </div>
 
-      {/* Certificates Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-10 max-w-6xl mx-auto">
+      {/* Carousel */}
+      <div
+        className="relative max-w-4xl mx-auto group overflow-hidden rounded-3xl  shadow-[0_0_30px_rgba(255,215,0,0.25)] bg-black/40 backdrop-blur-xl h-[500px]"
+        onMouseEnter={stopAutoSlide}
+        onMouseLeave={startAutoSlide}
+      >
         {certificates.map((cert, index) => (
           <div
             key={index}
-            className="group bg-black/80 border border-gold rounded-xl overflow-hidden shadow-xl transition transform hover:scale-105 hover:shadow-yellow-500/20 duration-500"
-            data-aos="fade-up"
-            data-aos-delay={`${index * 150}`}
+            className={`absolute inset-0 transition-all duration-700 ease-in-out flex items-center justify-center ${
+              index === current
+                ? "opacity-100 translate-x-0"
+                : "opacity-0 translate-x-full"
+            }`}
           >
-            <div className="overflow-hidden">
-              <img
-                src={cert.image}
-                alt={cert.alt}
-                className="w-full h-64 object-cover transition duration-500 group-hover:scale-105 group-hover:opacity-90"
-              />
+            {/* Certificate Image */}
+            <img
+              src={cert.image}
+              alt={cert.alt}
+              className="w-full h-full object-contain rounded-2xl transition-transform duration-500 hover:scale-105 hover:rotate-1"
+            />
+
+            {/* Title Overlay */}
+            <div className="absolute bottom-6 left-1/2 transform -translate-x-1/2 bg-black/70 backdrop-blur-md px-6 py-3 rounded-full text-yellow text-lg font-semibold shadow-lg border border-yellow/30">
+              {cert.title}
             </div>
-            <div className="p-6 space-y-4">
-              <h3 className="text-2xl font-bold text-yellow group-hover:underline">
-                {cert.title}
-              </h3>
-              <p className="text-gray-300 text-base">{cert.desc}</p>
-              <a
-                href={cert.link}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 font-semibold text-yellow hover:text-gold transition"
-              >
-                View Certificate <i className="fas fa-arrow-right" />
-              </a>
-            </div>
+
+            {/* Hover Button */}
+            <a
+              href={cert.link}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="absolute top-4 right-4 bg-gold text-black font-semibold px-5 py-2 rounded-full opacity-0 group-hover:opacity-100 transition shadow-lg hover:scale-105"
+            >
+              View Certificate
+            </a>
           </div>
+        ))}
+
+        {/* Prev / Next Buttons */}
+        <button
+          onClick={prevSlide}
+          className="absolute top-1/2 left-4 -translate-y-1/2 bg-black/70 hover:bg-gold hover:text-black text-yellow p-4 rounded-full transition shadow-lg"
+        >
+          ❮
+        </button>
+        <button
+          onClick={nextSlide}
+          className="absolute top-1/2 right-4 -translate-y-1/2 bg-black/70 hover:bg-gold hover:text-black text-yellow p-4 rounded-full transition shadow-lg"
+        >
+          ❯
+        </button>
+      </div>
+
+      {/* Dots */}
+      <div className="flex justify-center mt-8 space-x-3">
+        {certificates.map((_, index) => (
+          <span
+            key={index}
+            onClick={() => setCurrent(index)}
+            className={`w-4 h-4 rounded-full cursor-pointer transition-all ${
+              index === current
+                ? "bg-yellow scale-125 shadow-[0_0_12px_rgba(255,215,0,0.8)] animate-bounce"
+                : "bg-gray-600 hover:bg-gray-400"
+            }`}
+          ></span>
         ))}
       </div>
 

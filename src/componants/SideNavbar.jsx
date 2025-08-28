@@ -24,10 +24,11 @@ const Sidebar = () => {
   }, [theme]);
 
   const links = [
-    { name: "Home", icon: <FaHome />, href: "#main-content" },
+    { name: "Home", icon: <FaHome />, href: "#hero" },
+      { name: "Portfolio", icon: <FaRegEye />, href: "#portfolio" },
     { name: "About", icon: <GiStack />, href: "#about" },
     { name: "Certificates", icon: <FaWpforms />, href: "#certificates" },
-    { name: "Portfolio", icon: <FaRegEye />, href: "#portfolio" },
+  
     { name: "Contact", icon: <LuSplit />, href: "#contact" },
   ];
 
