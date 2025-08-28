@@ -1,4 +1,4 @@
-# 🖥️ Vikas Bansode | Portfolio Website
+#  Vikas Bansode | Portfolio Website
 
 Welcome to my personal portfolio website built with **React.js and Tailwind CSS** showcasing my skills, projects, and certificates.
 
@@ -16,7 +16,7 @@ Welcome to my personal portfolio website built with **React.js and Tailwind CSS*
 - Dark and light mode toggle
 - Mobile-friendly sidebar navigation
 
-## 🔧 Tech Stack
+##  Tech Stack
 
 - React.js
 - Tailwind CSS

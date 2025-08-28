@@ -23,8 +23,8 @@ const Portfolio = () => {
       title: "Blog Project",
       images: [blog1, blog2, blog3],
       desc: "A blog platform with user authentication, Markdown support, and full CRUD capabilities.",
-      github: "https://github.com/Vikass19/blog-website",
-      live: "https://blog-website-codebyvikas.vercel.app/",
+      github: "https://github.com/Vikass19/codebyvikasBlog",
+      live: "https://codebyvikas-blog.vercel.app/",
     },
     {
       title: "Recipe Project",
