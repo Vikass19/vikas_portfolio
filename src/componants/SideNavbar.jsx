@@ -69,7 +69,7 @@ const Sidebar = () => {
       {/* Divider */}
       <hr className="my-6 border-gray-700 mx-6" />
 
-      {/* Theme Toggle */}
+      {/* Theme Toggle
       <div className="flex justify-around px-6 mt-auto">
         <button
           onClick={() => setTheme("light")}
@@ -85,7 +85,7 @@ const Sidebar = () => {
           <FaMoon className="text-2xl" />
           <span className="text-xs">Dark</span>
         </button>
-      </div>
+      </div> */}
 
       {/* Optional Logout */}
       {/* <div className="px-6 mt-6">

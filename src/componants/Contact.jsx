@@ -15,7 +15,7 @@ const Contact = () => {
   const [isError, setIsError] = useState(false);
 
   useEffect(() => {
-    emailjs.init("ovbolwR1v4KC1kY71"); // Your EmailJS user ID
+    emailjs.init(import.meta.env.VITE_EMAILJS_PUBLIC_KEY); 
   }, []);
 
   const handleChange = (e) => {
@@ -42,17 +42,30 @@ const Contact = () => {
     if (step < 4) setStep(step + 1);
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    emailjs.send("service_u2jxg26", "template_wmbztcp", data).then(
-      () => {
-        setIsSubmitted(true);
-        setData({ firstName: "", lastName: "", email: "", message: "" });
-        setStep(1);
-      },
-      () => setIsError(true)
-    );
-  };
+const handleSubmit = (e) => {
+  e.preventDefault();
+
+ emailjs
+  .send(
+    import.meta.env.VITE_EMAILJS_SERVICE_ID,
+    import.meta.env.VITE_EMAILJS_TEMPLATE_ID,
+    {
+      title: "Contact Us", // you can also set dynamic title here if needed
+      name: `${data.firstName} ${data.lastName}`,
+      email: data.email,
+      message: data.message,
+    }
+  )
+  .then(
+    () => {
+      setIsSubmitted(true);
+      setData({ firstName: "", lastName: "", email: "", message: "" });
+      setStep(1);
+    },
+    () => setIsError(true)
+  );
+}
+
 
   const inputVariants = {
     hidden: { opacity: 0, x: 50 },
