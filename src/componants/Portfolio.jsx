@@ -2,6 +2,12 @@ import React, { useState, useEffect } from "react";
 import "@fortawesome/fontawesome-free/css/all.min.css";
 
 // Import your images
+import art1 from "../assets//art_gallery/about.png"
+import art2 from "../assets//art_gallery/contact.png"
+import art3 from "../assets/art_gallery/home.png"
+import art4 from "../assets/art_gallery/home1.png"
+import art5 from "../assets/art_gallery/shop.png"
+import art6 from "../assets/art_gallery/shopPrice.png"
 import blog1 from "../assets/homepage.png";
 import blog2 from "../assets/blogdetail.png";
 import blog3 from "../assets/searchResult.png";
@@ -19,6 +25,14 @@ import data from "../assets/gitProfile/data.png";
 
 const Portfolio = () => {
   const projects = [
+   {
+  title: "WEB ART GALLERY",
+  images: [art2, art3,  art1 , art4 , art5 , art6], 
+  desc: "A modern web art gallery built using ReactJS & Tailwind CSS. It displays artworks in clean layouts with responsive design and an attractive UI.",
+  github: "https://github.com/Vikass19/Web-Art-Gallery", 
+  live: "https://art-gallery-nb9k.onrender.com/",
+},
+
     {
       title: "Blog Project",
       images: [blog1, blog2, blog3],

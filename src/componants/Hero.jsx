@@ -1,6 +1,6 @@
 import React from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
-import resume from "../assets/Resume_vikas.pdf";
+import resume from "../assets/resumes/application-FullStack_Developer_VIKAS_BANSODE.pdf";
 import galaxy from "../assets/galaxy.mp4";
 
 const Hero = () => {
