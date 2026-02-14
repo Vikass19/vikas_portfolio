@@ -30,7 +30,7 @@ const Portfolio = () => {
   title: "WEB ART GALLERY",
   images: [art1, art2,  art3 , art4 , art5 , art6], 
   desc: "A modern web art gallery built using ReactJS & Tailwind CSS. It displays artworks in clean layouts with responsive design and an attractive UI.",
-  github: "https://github.com/Vikass19/Web-Art-Gallery", 
+  github: "https://github.com/Vikass19/web_art_gallery", 
   live: "https://art-gallery-nb9k.onrender.com/",
 },
 
