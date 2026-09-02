@@ -12,6 +12,8 @@ const Hero = () => {
   const nameY = useTransform(scrollYProgress, [0, 1], [0, -35]);
   const descY = useTransform(scrollYProgress, [0, 1], [0, -25]);
 
+      const resumeUrl = 'https://drive.google.com/file/d/1RAauSG1u8cGWzIGIfbBg5SNPOjWvLJTY/view?usp=drive_link'
+
   return (
     <section className="relative py-20 sm:py-24 overflow-hidden rounded-lg">
       {/* Video Background */}
@@ -61,7 +63,7 @@ const Hero = () => {
               Hire Me
             </a>
             <a
-              href={resume}
+                href={resumeUrl}
               target="_blank"
               rel="noopener noreferrer"
               className="relative px-6 py-3 rounded-xl font-semibold border-2 border-gold text-gold hover:bg-gold hover:text-black shadow-lg transition-all duration-300 hover:scale-105"
