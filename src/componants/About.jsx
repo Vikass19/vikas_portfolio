@@ -1,9 +1,11 @@
+
 import profile_image from "../assets/profile1.webp";
 
 const About = () => {
   const stats = [
     { label: "Status", value: "Fresher" },
     { label: "Stack", value: "MERN + Django" },
+    { label: "Location", value: "Pune, Maharashtra" },
     { label: "Freelance", value: "Open to Work" },
     { label: "Email", value: "vikasbansode804@gmail.com" },
     { label: "YouTube", value: "@CodeDevApi" },
@@ -12,36 +14,48 @@ const About = () => {
   return (
     <section id="about" className="py-16 sm:py-20">
       <div className="mb-10">
-        <p className="font-mono text-signature text-sm mb-2">$ cat about.md</p>
+        <p className="font-mono text-signature text-sm mb-2">
+          $ cat about.md
+        </p>
+
         <h2 className="font-display font-black text-4xl sm:text-5xl">
-          About Me
+          About Vikas Bansode
         </h2>
       </div>
 
       <div className="flex flex-col lg:flex-row gap-10 items-stretch">
+
         {/* Image */}
         <div className="lg:w-2/5">
           <div className="border-2 border-paper shadow-hard-yellow h-full">
             <img
               src={profile_image}
-              fetchPriority="high"
-              alt="Vikas Bansode"
-              className="w-full h-full object-cover "
+              alt="Vikas Bansode - freelance web developer in Pune"
+              className="w-full h-full object-cover"
             />
           </div>
         </div>
 
         {/* Text */}
         <div className="lg:w-3/5 border-2 border-paper p-6 sm:p-8 flex flex-col justify-between">
+
           <div>
             <h3 className="font-display font-bold text-2xl sm:text-3xl mb-4">
-              Fullstack developer &amp; content creator
+              Freelance Web Developer in Pune
             </h3>
+
             <p className="font-display text-muted leading-relaxed mb-6">
-              I'm a developer, YouTuber and freelancer who builds meaningful,
-              functional digital products with Python, MERN and modern web
-              tooling. I care more about things working well than looking
-              flashy — though I try for both.
+              I'm Vikas Bansode, a web developer and freelancer based in
+              Pune, Maharashtra. I build modern, responsive and functional
+              websites and web applications using React, JavaScript, Python
+              and Django. I work with businesses, startups and individuals
+              who need a professional online presence or custom web solutions.
+            </p>
+
+            <p className="font-display text-muted leading-relaxed mb-6">
+              Along with freelance web development, I create coding tutorials
+              on YouTube and continue to build practical projects to improve
+              my skills across frontend and backend development.
             </p>
 
             <dl className="border-t-2 border-line">
@@ -63,6 +77,7 @@ const About = () => {
           >
             View My Projects
           </a>
+
         </div>
       </div>
     </section>
@@ -70,3 +85,4 @@ const About = () => {
 };
 
 export default About;
+
