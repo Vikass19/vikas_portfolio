@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from "react";
 
 const Hero = () => {
@@ -8,6 +9,7 @@ const Hero = () => {
     const t = setInterval(() => {
       setRoleIndex((i) => (i + 1) % roles.length);
     }, 2200);
+
     return () => clearInterval(t);
   }, []);
 
@@ -17,18 +19,26 @@ const Hero = () => {
   return (
     <section id="hero" className="relative py-16 sm:py-24">
       <div className="max-w-5xl">
+
         {/* Terminal bar */}
         <div className="inline-flex items-center gap-2 border-2 border-signature px-4 py-2 mb-8 font-mono text-xs uppercase tracking-wide text-signature">
           <span className="w-2 h-2 bg-signature animate-blink"></span>
           available for freelance & fresher roles
         </div>
 
-        {/* Big display headline */}
+        {/* SEO-focused main heading */}
         <h1 className="font-display font-black leading-[0.95] text-5xl sm:text-7xl lg:text-8xl mb-6">
-          VIKAS
+          FREELANCE
           <br />
-          BANSODE
+          WEB DEVELOPER
+          <br />
+          <span className="text-signature">IN PUNE</span>
         </h1>
+
+        {/* Name */}
+        <h2 className="font-mono text-lg sm:text-xl text-paper mb-4 uppercase">
+          Vikas Bansode
+        </h2>
 
         {/* Rotating role — terminal style */}
         <div className="font-mono text-lg sm:text-xl text-paper mb-8 h-8">
@@ -36,10 +46,12 @@ const Hero = () => {
           <span className="terminal-cursor">&nbsp;</span>
         </div>
 
+        {/* SEO-relevant introduction */}
         <p className="font-display text-base sm:text-lg text-muted max-w-2xl mb-10 leading-relaxed">
-          I build fast, functional web apps with React, Node and Django —
-          then ship them. MCA student turned fresher developer, based in
-          Pune, taking on freelance builds on the side.
+          I'm Vikas Bansode, a freelance web developer based in Pune.
+          I build fast, responsive and modern websites and web applications
+          using React, Python, Django and JavaScript for businesses,
+          startups and individuals.
         </p>
 
         {/* CTA row */}
@@ -52,6 +64,7 @@ const Hero = () => {
           >
             Hire Me
           </a>
+
           <a
             href={resumeUrl}
             target="_blank"
@@ -65,10 +78,22 @@ const Hero = () => {
         {/* Social row */}
         <div className="flex gap-4 mt-10 font-mono text-sm">
           {[
-            { href: "https://www.linkedin.com/in/vikas-bansode-324467229", label: "LinkedIn" },
-            { href: "https://github.com/Vikass19", label: "GitHub" },
-            { href: "https://www.instagram.com/vikass0129", label: "Instagram" },
-            { href: "https://www.youtube.com/@CodeDevApi", label: "YouTube" },
+            {
+              href: "https://www.linkedin.com/in/vikas-bansode-324467229",
+              label: "LinkedIn",
+            },
+            {
+              href: "https://github.com/Vikass19",
+              label: "GitHub",
+            },
+            {
+              href: "https://www.instagram.com/vikass0129",
+              label: "Instagram",
+            },
+            {
+              href: "https://www.youtube.com/@CodeDevApi",
+              label: "YouTube",
+            },
           ].map((link) => (
             <a
               key={link.label}
@@ -81,9 +106,11 @@ const Hero = () => {
             </a>
           ))}
         </div>
+
       </div>
     </section>
   );
 };
 
 export default Hero;
+
