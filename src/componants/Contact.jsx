@@ -1,15 +1,18 @@
+
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import emailjs from "@emailjs/browser";
 
 const Contact = () => {
   const [step, setStep] = useState(1);
+
   const [data, setData] = useState({
     firstName: "",
     lastName: "",
     email: "",
     message: "",
   });
+
   const [error, setError] = useState("");
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [isError, setIsError] = useState(false);
@@ -25,21 +28,34 @@ const Contact = () => {
 
   const handleNext = (e) => {
     e.preventDefault();
+
     const validations = {
       1: () => !data.firstName.trim() && "First name is required",
+
       2: () => !data.lastName.trim() && "Last name is required",
+
       3: () => {
         if (!data.email.trim()) return "Email is required";
-        if (!/\S+@\S+\.\S+/.test(data.email)) return "Enter a valid email";
+
+        if (!/\S+@\S+\.\S+/.test(data.email)) {
+          return "Enter a valid email";
+        }
+
         return "";
       },
+
       4: () => !data.message.trim() && "Message is required",
     };
 
     const errorMsg = validations[step]();
-    if (errorMsg) return setError(errorMsg);
 
-    if (step < 4) setStep(step + 1);
+    if (errorMsg) {
+      return setError(errorMsg);
+    }
+
+    if (step < 4) {
+      setStep(step + 1);
+    }
   };
 
   const handleSubmit = (e) => {
@@ -59,7 +75,14 @@ const Contact = () => {
       .then(
         () => {
           setIsSubmitted(true);
-          setData({ firstName: "", lastName: "", email: "", message: "" });
+
+          setData({
+            firstName: "",
+            lastName: "",
+            email: "",
+            message: "",
+          });
+
           setStep(1);
         },
         () => setIsError(true)
@@ -73,33 +96,64 @@ const Contact = () => {
   };
 
   const formFields = [
-    { key: "firstName", type: "text", placeholder: "First Name" },
-    { key: "lastName", type: "text", placeholder: "Last Name" },
-    { key: "email", type: "email", placeholder: "Email" },
-    { key: "message", type: "textarea", placeholder: "Your Message", rows: 5 },
+    {
+      key: "firstName",
+      type: "text",
+      placeholder: "First Name",
+    },
+    {
+      key: "lastName",
+      type: "text",
+      placeholder: "Last Name",
+    },
+    {
+      key: "email",
+      type: "email",
+      placeholder: "Email",
+    },
+    {
+      key: "message",
+      type: "textarea",
+      placeholder: "Tell me about your website or project",
+      rows: 5,
+    },
   ];
 
   return (
     <section id="contact" className="py-16 sm:py-20">
+
+      {/* Section heading */}
       <div className="mb-10">
-        <p className="font-mono text-signature text-sm mb-2">$ ./contact.sh</p>
+        <p className="font-mono text-signature text-sm mb-2">
+          $ ./contact.sh
+        </p>
+
         <h2 className="font-display font-black text-4xl sm:text-5xl">
-          Contact Me
+          Contact Vikas Bansode
         </h2>
+
+        <p className="font-display text-muted max-w-xl mt-4 leading-relaxed">
+          Looking for a freelance web developer in Pune? Get in touch to
+          discuss a website, web application or custom development project.
+        </p>
       </div>
 
       <div className="max-w-xl border-2 border-signature p-6 sm:p-10">
+
         {/* Step indicator */}
         <div className="flex gap-1 mb-8 font-mono text-xs text-muted">
           {[1, 2, 3, 4].map((s) => (
             <div
               key={s}
-              className={`flex-1 h-1.5 ${s <= step ? "bg-signature" : "bg-line"}`}
+              className={`flex-1 h-1.5 ${
+                s <= step ? "bg-signature" : "bg-line"
+              }`}
             ></div>
           ))}
         </div>
 
         <form onSubmit={handleSubmit} className="flex flex-col gap-4">
+
           <AnimatePresence mode="wait">
             {formFields.map(
               (field, index) =>
@@ -112,6 +166,7 @@ const Contact = () => {
                     rows={field.rows}
                     value={data[field.key]}
                     onChange={handleChange}
+                    aria-label={field.placeholder}
                     className="p-4 bg-black border-2 border-paper focus:border-signature outline-none placeholder-muted text-paper font-display resize-none transition-colors"
                     variants={inputVariants}
                     initial="hidden"
@@ -127,6 +182,7 @@ const Contact = () => {
                     placeholder={field.placeholder}
                     value={data[field.key]}
                     onChange={handleChange}
+                    aria-label={field.placeholder}
                     className="p-4 bg-black border-2 border-paper focus:border-signature outline-none placeholder-muted text-paper font-display transition-colors"
                     variants={inputVariants}
                     initial="hidden"
@@ -139,10 +195,13 @@ const Contact = () => {
           </AnimatePresence>
 
           {error && (
-            <p className="font-mono text-alert text-sm">{error}</p>
+            <p className="font-mono text-alert text-sm">
+              {error}
+            </p>
           )}
 
           <div className="flex gap-3 mt-4">
+
             {step > 1 && (
               <button
                 type="button"
@@ -152,8 +211,10 @@ const Contact = () => {
                 Back
               </button>
             )}
+
             {step < 4 ? (
               <button
+                type="button"
                 onClick={handleNext}
                 className="flex-1 px-6 py-3 bg-signature text-ink font-mono uppercase text-sm font-bold border-2 border-signature hover:bg-ink hover:text-signature transition"
               >
@@ -167,6 +228,7 @@ const Contact = () => {
                 Send Message
               </button>
             )}
+
           </div>
         </form>
       </div>
@@ -187,13 +249,16 @@ const Contact = () => {
           isError
         />
       )}
+
     </section>
   );
 };
 
 const Modal = ({ title, message, onClose, isError }) => (
   <div className="fixed inset-0 flex items-center justify-center bg-black/80 z-50 px-4">
+
     <div className="bg-paper border-2 border-ink p-8 max-w-sm w-full shadow-hard-yellow">
+
       <h3
         className={`font-display font-black text-2xl mb-2 ${
           isError ? "text-alert" : "text-ink"
@@ -201,7 +266,11 @@ const Modal = ({ title, message, onClose, isError }) => (
       >
         {title}
       </h3>
-      <p className="font-display text-ink/80">{message}</p>
+
+      <p className="font-display text-ink/80">
+        {message}
+      </p>
+
       <button
         onClick={onClose}
         className={`mt-6 px-6 py-3 font-mono uppercase text-sm font-bold border-2 transition ${
@@ -212,8 +281,10 @@ const Modal = ({ title, message, onClose, isError }) => (
       >
         Close
       </button>
+
     </div>
   </div>
 );
 
 export default Contact;
+
